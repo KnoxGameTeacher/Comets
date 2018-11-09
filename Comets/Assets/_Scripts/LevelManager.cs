@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class _LevelManager : MonoBehaviour {
+public class LevelManager : MonoBehaviour {
 
     [SerializeField] int currentScore = 0;
     [SerializeField] int pointsPerBlock = 100;
@@ -11,7 +11,7 @@ public class _LevelManager : MonoBehaviour {
 
     private void Awake()
     {
-        int levelManagerNumber = FindObjectsOfType<_LevelManager>().Length;
+        int levelManagerNumber = FindObjectsOfType<LevelManager>().Length;
         if (levelManagerNumber > 1)
         {
             Destroy(gameObject);
