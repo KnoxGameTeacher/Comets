@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4782373916641294}
   - component: {fileID: 212247820756423468}
+  - component: {fileID: 60163539096183638}
   m_Layer: 0
   m_Name: BigRed
   m_TagString: Untagged
@@ -40,6 +41,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &60163539096183638
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1741071937687838}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.42, y: 0.39}
+    newSize: {x: 0.42, y: 0.39}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.027616661, y: 0.18412428}
+      - {x: -0.093030296, y: 0.14573926}
+      - {x: -0.14842415, y: 0.058793724}
+      - {x: -0.19291656, y: -0.038312785}
+      - {x: -0.123793766, y: -0.14036965}
+      - {x: 0.0039482117, y: -0.17557971}
+      - {x: 0.08167331, y: -0.16729085}
+      - {x: 0.16984527, y: -0.10154112}
+      - {x: 0.19768493, y: -0.037981443}
+      - {x: 0.17335956, y: -0.012384107}
+      - {x: 0.17773247, y: 0.08234172}
+      - {x: 0.096084595, y: 0.14960602}
+      - {x: 0.046848297, y: 0.15189686}
 --- !u!212 &212247820756423468
 SpriteRenderer:
   m_ObjectHideFlags: 1

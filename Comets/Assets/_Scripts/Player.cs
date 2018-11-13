@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -15,6 +16,10 @@ public class Player : MonoBehaviour {
     [Header("Screen Wrapping")]
     [SerializeField] float screenHeight;
     [SerializeField] float screenWidth;
+
+    [Header("FX")]
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] GameObject explosionFX;
 
 	// Use this for initialization
 	void Start () {
@@ -57,5 +62,19 @@ public class Player : MonoBehaviour {
 
         playerRigid.AddRelativeForce(Vector2.up * thrustInput * yVelocity * Time.deltaTime);
         playerRigid.AddTorque(-turnInput * xRotation * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        StartCoroutine(PlayerDeath());
+    }
+
+    IEnumerator PlayerDeath()
+    {
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
+        Instantiate(explosionFX, transform.position, transform.rotation);
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
+        SceneManager.LoadScene("GameOver");
     }
 }

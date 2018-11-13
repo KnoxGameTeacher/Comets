@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4105658161428340}
   - component: {fileID: 212977340792608806}
+  - component: {fileID: 60231741835543976}
   m_Layer: 0
   m_Name: SmallBrown
   m_TagString: Untagged
@@ -40,6 +41,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &60231741835543976
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130177641040612}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.26, y: 0.27}
+    newSize: {x: 0.26, y: 0.27}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.015889049, y: 0.09567058}
+      - {x: -0.047201395, y: 0.08016044}
+      - {x: -0.080320954, y: 0.07438749}
+      - {x: -0.10897958, y: -0.0066620708}
+      - {x: -0.030058026, y: -0.10809046}
+      - {x: 0.057551265, y: -0.08016044}
+      - {x: 0.109300375, y: -0.004008591}
+      - {x: 0.054110885, y: 0.1080904}
 --- !u!212 &212977340792608806
 SpriteRenderer:
   m_ObjectHideFlags: 1

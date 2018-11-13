@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212084364218672516}
   - component: {fileID: 50044046974589064}
   - component: {fileID: 114414221387996000}
+  - component: {fileID: 60352946702448858}
   m_Layer: 0
   m_Name: YellowPlayer
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1900338238068734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.24, z: 0}
+  m_LocalPosition: {x: 0, y: -3.34, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,6 +63,40 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &60352946702448858
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900338238068734}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.46, y: 0.45}
+    newSize: {x: 0.46, y: 0.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.080604985, y: 0.093825504}
+      - {x: -0.009199126, y: 0.20161057}
+      - {x: -0.0822775, y: 0.0972774}
+      - {x: -0.20583628, y: -0.035106897}
+      - {x: -0.20583624, y: -0.07524904}
+      - {x: -0.12096083, y: -0.07656567}
+      - {x: 0.007046135, y: -0.19738436}
+      - {x: 0.14024898, y: -0.075604916}
+      - {x: 0.21274021, y: -0.08033824}
+      - {x: 0.20619214, y: -0.032473486}
 --- !u!114 &114414221387996000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,6 +113,9 @@ MonoBehaviour:
   xRotation: 100
   screenHeight: 5.7
   screenWidth: 9.5
+  deathSound: {fileID: 8300000, guid: 6e28dcfc67d964af68f04d3987e5d40e, type: 3}
+  explosionFX: {fileID: 1444818763146200, guid: 5b54676d8ed57425bb59b2eb43d1930b,
+    type: 2}
 --- !u!212 &212084364218672516
 SpriteRenderer:
   m_ObjectHideFlags: 1
