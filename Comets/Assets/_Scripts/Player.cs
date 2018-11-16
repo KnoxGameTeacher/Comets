@@ -20,6 +20,13 @@ public class Player : MonoBehaviour {
     [Header("FX")]
     [SerializeField] AudioClip deathSound;
     [SerializeField] GameObject explosionFX;
+    [SerializeField] Animator animator;
+
+    [Header("Shooting")]
+    [SerializeField] GameObject bullet;
+    [SerializeField] float bulletSpeed;
+    [SerializeField] float timeBetweenShots = 1f;
+    Coroutine autoFire;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +37,7 @@ public class Player : MonoBehaviour {
 	void Update () {
         PlayerMovement();
         ScreenWrap();
+        Fire();
 	}
 
     private void ScreenWrap()
@@ -60,8 +68,36 @@ public class Player : MonoBehaviour {
         thrustInput = Input.GetAxis("Vertical");
         turnInput = Input.GetAxis("Horizontal");
 
+        animator.SetFloat("Thrust", thrustInput);
+        animator.SetFloat("Turn", turnInput);
+
         playerRigid.AddRelativeForce(Vector2.up * thrustInput * yVelocity * Time.deltaTime);
         playerRigid.AddTorque(-turnInput * xRotation * Time.deltaTime);
+    }
+
+    private void Fire()
+    {
+         if(Input.GetButtonDown("Fire1"))
+        {
+            autoFire = StartCoroutine(AutoFire());
+        }
+        if(Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(autoFire);
+        }
+    }
+
+    IEnumerator AutoFire()
+    {
+        if(Input.GetButtonDown("Fire1"))
+            while(true)
+        {
+                GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
+                newBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
+
+                yield return new WaitForSeconds(timeBetweenShots);
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -73,6 +109,7 @@ public class Player : MonoBehaviour {
     {
         AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
         Instantiate(explosionFX, transform.position, transform.rotation);
+        GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
         SceneManager.LoadScene("GameOver");

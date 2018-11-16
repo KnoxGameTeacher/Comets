@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4719070526737146}
   - component: {fileID: 212629655796461096}
   - component: {fileID: 60109570869119866}
+  - component: {fileID: 50645507625207346}
+  - component: {fileID: 114470108656603684}
   m_Layer: 0
   m_Name: SmallRed
   m_TagString: Untagged
@@ -41,6 +43,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50645507625207346
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662835422566578}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!60 &60109570869119866
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -76,6 +98,24 @@ PolygonCollider2D:
       - {x: 0.08991504, y: -0.0230923}
       - {x: 0.0915885, y: 0.036524862}
       - {x: 0.043177128, y: 0.0799149}
+--- !u!114 &114470108656603684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662835422566578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f5609741df4425da53b975083123bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 250
+  maxSpin: 250
+  cometRigid: {fileID: 50645507625207346}
+  smallComet: {fileID: 0}
+  cometSize: 1
+  screenHeight: 5.7
+  screenWidth: 9.5
 --- !u!212 &212629655796461096
 SpriteRenderer:
   m_ObjectHideFlags: 1
