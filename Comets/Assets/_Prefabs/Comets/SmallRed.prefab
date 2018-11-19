@@ -116,6 +116,7 @@ MonoBehaviour:
   cometSize: 1
   screenHeight: 5.7
   screenWidth: 9.5
+  points: 100
 --- !u!212 &212629655796461096
 SpriteRenderer:
   m_ObjectHideFlags: 1

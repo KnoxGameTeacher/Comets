@@ -14,17 +14,26 @@ public class Comet : MonoBehaviour {
     [SerializeField] float screenHeight;
     [SerializeField] float screenWidth;
 
+    [SerializeField] int points;
+    GameObject levelManager;
+
     // Use this for initialization
-    void Start () 
+    void Start ()
+    {
+        CreateRandomMovement();
+        levelManager = GameObject.FindWithTag("level manager");
+    }
+
+    private void CreateRandomMovement()
     {
         Vector2 speed = new Vector2(Random.Range(-maxSpeed, maxSpeed), Random.Range(-maxSpeed, maxSpeed));
         float spin = Random.Range(-maxSpin, maxSpin);
         cometRigid.AddForce(speed);
         cometRigid.AddTorque(spin);
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
         ScreenWrap();
 	}
 
@@ -44,6 +53,8 @@ public class Comet : MonoBehaviour {
             {
                 //add points
             }
+            //FindObjectOfType<LevelManager>().AddToScore();
+            levelManager.SendMessage("AddPoints", points);
             Destroy(gameObject);
         }
     }

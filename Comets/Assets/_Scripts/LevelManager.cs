@@ -6,7 +6,7 @@ using TMPro;
 public class LevelManager : MonoBehaviour {
 
     [SerializeField] int currentScore = 0;
-    [SerializeField] int pointsPerBlock = 100;
+    [SerializeField] int pointsPerComet = 100;
     [SerializeField] TextMeshProUGUI scoreText;
 
     private void Awake()
@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
     // Use this for initialization
     void Start () 
     {
-        GetComponent<AudioSource>().Play();
+        //GetComponent<AudioSource>().Play();
         UpdateScore();
 	}
 	
@@ -36,9 +36,15 @@ public class LevelManager : MonoBehaviour {
 		
 	}
 
+    public void AddPoints(int pointsToAdd)
+    {
+        currentScore += pointsToAdd;
+        UpdateScore();
+    }
+
     public void AddToScore()
     {
-        currentScore += pointsPerBlock;
+        currentScore += pointsPerComet;
         UpdateScore();
     }
 
