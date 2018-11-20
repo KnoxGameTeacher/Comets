@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
-
+    [Header("Player States")]
+    [SerializeField] int lives = 3;
+    [SerializeField] bool isInvincible;
+    GameObject levelManager;
 
     [Header("Player Movement")]
     [SerializeField] Rigidbody2D playerRigid;
@@ -30,8 +33,8 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        levelManager = GameObject.FindWithTag("level manager");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -102,8 +105,38 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        StartCoroutine(PlayerDeath());
+        if (!isInvincible)
+        {
+            if (lives > 0)
+            {
+                StartCoroutine(LoseLife());
+            }
+            else
+            StartCoroutine(PlayerDeath());
+        }
     }
+
+    IEnumerator LoseLife()
+    {
+        isInvincible = true;
+        lives--;
+        levelManager.SendMessage("ManageLives", lives);
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
+        GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation);
+        yield return new WaitForSeconds(2);
+        Destroy(explosion);
+        transform.position = new Vector2(0, 0);
+        StartCoroutine(ShieldActive());
+    }
+
+    IEnumerator ShieldActive()
+    {
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        yield return new WaitForSeconds(3);
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        isInvincible = false;
+    }
+
 
     IEnumerator PlayerDeath()
     {

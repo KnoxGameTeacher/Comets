@@ -4,10 +4,21 @@ using UnityEngine;
 using TMPro;
 
 public class LevelManager : MonoBehaviour {
-
+    [Header("UI")]
     [SerializeField] int currentScore = 0;
-    [SerializeField] int pointsPerComet = 100;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI lifeText;
+
+    [Header("Spawn")]
+    [SerializeField] GameObject[] comets;
+    [SerializeField] int waveCounter = 0;
+    [SerializeField] int cometCountIncrease = 1;
+    [SerializeField] float spawnSpeedIncrease = 0.1f;
+    [SerializeField] Vector2 spawnValues;
+    [SerializeField] int cometCount;
+    [SerializeField] float spawnWait;
+    [SerializeField] float startWait;
+    [SerializeField] float waveWait;
 
     private void Awake()
     {
@@ -22,19 +33,33 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
-
-    // Use this for initialization
     void Start () 
     {
-        //GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().Play();
         UpdateScore();
+        StartCoroutine(SpawnWaves());
 	}
-	
-	// Update is called once per frame
-	void Update () 
+
+    IEnumerator SpawnWaves()
     {
-		
-	}
+        yield return new WaitForSeconds(startWait);
+        while(true)
+        {
+            for (int i = 0; i < cometCount; i++)
+            {
+                Vector2 spawnPosition = new Vector2(Random.Range(-spawnValues.x, spawnValues.x), Random.Range(-spawnValues.y, spawnValues.y));
+                Instantiate(comets[Random.Range(0, comets.Length)], spawnPosition, Quaternion.identity);
+                yield return new WaitForSeconds(spawnWait - (waveCounter * spawnSpeedIncrease));
+            }
+            yield return new WaitForSeconds(waveWait);
+            waveCounter++;
+        }
+    }
+
+    public void ManageLives (int lives)
+    {
+        lifeText.text = "lives: " + lives.ToString();
+    }
 
     public void AddPoints(int pointsToAdd)
     {
@@ -42,21 +67,13 @@ public class LevelManager : MonoBehaviour {
         UpdateScore();
     }
 
-    public void AddToScore()
-    {
-        currentScore += pointsPerComet;
-        UpdateScore();
-    }
-
     private void UpdateScore()
     {
-        scoreText.text = currentScore.ToString();
+        scoreText.text =currentScore.ToString();
     }
 
     public void ResetGame()
     {
-        //currentScore = 0;
-        //UpdateScore();
         Destroy(gameObject);
     }
 

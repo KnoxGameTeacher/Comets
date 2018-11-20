@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 82722636388250550}
   m_Layer: 0
   m_Name: LevelManager
-  m_TagString: Untagged
+  m_TagString: level manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bd81284dd0c99462b86881c51f3a6860, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 41a676562c86d421389e86c48315c43b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -201,8 +201,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScore: 0
-  pointsPerBlock: 100
   scoreText: {fileID: 114231313862109518}
+  lifeText: {fileID: 114782343820245354}
+  comets:
+  - {fileID: 1664296790292242, guid: d306cf3d756d94f32a2542b4a4a88e08, type: 2}
+  - {fileID: 1741071937687838, guid: b8c82e8d8ba3e4a7fb040b9eb3a5122f, type: 2}
+  waveCounter: 0
+  cometCountIncrease: 1
+  spawnSpeedIncrease: 0.1
+  spawnValues: {x: 5, y: 7}
+  cometCount: 10
+  spawnWait: 2
+  startWait: 1
+  waveWait: 4
 --- !u!114 &114231313862109518
 MonoBehaviour:
   m_ObjectHideFlags: 1

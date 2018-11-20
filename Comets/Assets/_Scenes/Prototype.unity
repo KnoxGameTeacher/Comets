@@ -382,16 +382,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114782343820245354, guid: f5f1e3d0d4ec7435c8eac3befffef17b,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114782343820245354, guid: f5f1e3d0d4ec7435c8eac3befffef17b,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114231313862109518, guid: f5f1e3d0d4ec7435c8eac3befffef17b,
         type: 2}
       propertyPath: m_havePropertiesChanged
@@ -402,9 +392,15 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1158083640800220, guid: f5f1e3d0d4ec7435c8eac3befffef17b, type: 2}
-      propertyPath: m_TagString
-      value: level manager
+    - target: {fileID: 114782343820245354, guid: f5f1e3d0d4ec7435c8eac3befffef17b,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114782343820245354, guid: f5f1e3d0d4ec7435c8eac3befffef17b,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5f1e3d0d4ec7435c8eac3befffef17b, type: 2}
