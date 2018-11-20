@@ -6,6 +6,10 @@ TagManager:
   tags:
   - bullet
   - level manager
+  - Bomb PowerUp
+  - Shield PowerUp
+  - Speed PowerUp
+  - Triple PowerUp
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     [Header("Player States")]
     [SerializeField] int lives = 3;
     [SerializeField] bool isInvincible;
+    [SerializeField] bool isTripleShotOn;
     GameObject levelManager;
 
     [Header("Player Movement")]
@@ -29,7 +30,10 @@ public class Player : MonoBehaviour {
     [SerializeField] GameObject bullet;
     [SerializeField] float bulletSpeed;
     [SerializeField] float timeBetweenShots = 1f;
+    [SerializeField] GameObject leftBarrel;
+    [SerializeField] GameObject rightBarrel;
     Coroutine autoFire;
+    Coroutine autoFireTriple;
 
 	// Use this for initialization
 	void Start () {
@@ -80,27 +84,60 @@ public class Player : MonoBehaviour {
 
     private void Fire()
     {
-         if(Input.GetButtonDown("Fire1"))
+        if (isTripleShotOn == false)
         {
-            autoFire = StartCoroutine(AutoFire());
+            if (Input.GetButtonDown("Fire1"))
+            {
+                autoFire = StartCoroutine(AutoFire());
+            }
+            if (Input.GetButtonUp("Fire1"))
+            {
+                StopCoroutine(autoFire);
+            }
         }
-        if(Input.GetButtonUp("Fire1"))
+        if (isTripleShotOn == true)
         {
-            StopCoroutine(autoFire);
+            if (Input.GetButtonDown("Fire1"))
+            {
+                autoFireTriple = StartCoroutine(AutoFireTriple());
+            }
+            if (Input.GetButtonUp("Fire1"))
+            {
+                StopCoroutine(autoFireTriple);
+            }
         }
     }
 
     IEnumerator AutoFire()
     {
-        if(Input.GetButtonDown("Fire1"))
-            while(true)
-        {
+        if (Input.GetButtonDown("Fire1"))
+            while (true)
+            {
                 GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
                 newBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
 
                 yield return new WaitForSeconds(timeBetweenShots);
-        }
+            }
 
+    }
+
+    IEnumerator AutoFireTriple()
+    {
+
+        if (Input.GetButtonDown("Fire1"))
+            while (isTripleShotOn == true)
+            {
+                GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation) as GameObject;
+                newBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
+
+                GameObject leftBullet = Instantiate(bullet, leftBarrel.transform.position, leftBarrel.transform.rotation) as GameObject;
+                leftBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
+
+                GameObject rightBullet = Instantiate(bullet, rightBarrel.transform.position, rightBarrel.transform.rotation) as GameObject;
+                rightBullet.GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * bulletSpeed);
+
+                yield return new WaitForSeconds(timeBetweenShots);
+            }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -114,6 +151,27 @@ public class Player : MonoBehaviour {
             else
             StartCoroutine(PlayerDeath());
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Shield PowerUp"))
+        {
+            Destroy(other.gameObject);
+            StartCoroutine(ShieldPowerUp());
+        }
+        else if (other.CompareTag("Triple PowerUp"))
+        {
+            Destroy(other.gameObject);
+            StartCoroutine(TripleShotPowerup());
+        }
+    }
+
+    IEnumerator TripleShotPowerup()
+    {
+        isTripleShotOn = true;
+        yield return new WaitForSeconds(5);
+        isTripleShotOn = false;
     }
 
     IEnumerator LoseLife()
@@ -133,6 +191,15 @@ public class Player : MonoBehaviour {
     {
         gameObject.transform.GetChild(0).gameObject.SetActive(true);
         yield return new WaitForSeconds(3);
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        isInvincible = false;
+    }
+
+    IEnumerator ShieldPowerUp()
+    {
+        isInvincible = true;
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        yield return new WaitForSeconds(5);
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         isInvincible = false;
     }
